@@ -1,0 +1,22 @@
+services:
+  data:
+    image: ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+    working_dir: /app
+    entrypoint: ["uv", "run", "scripts/build_data.py"]
+    volumes:
+      - ./scripts:/app/scripts:ro
+      - ./web:/app/web
+      - uv-cache:/root/.cache/uv
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    depends_on:
+      data:
+        condition: service_completed_successfully
+
+volumes:
+  uv-cache:

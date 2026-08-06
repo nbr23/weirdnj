@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weird NJ — Where to Buy</title>
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <header>
+      <h1>Weird NJ</h1>
+      <p>Where to buy</p>
+      <input id="search" type="search" placeholder="Search town, store or street…" autocomplete="off">
+      <p id="count" aria-live="polite"></p>
+    </header>
+    <div id="location-list"></div>
+    <footer>
+      Locations from
+      <a href="https://weirdnj.com/weird-news/outlets-distributors/" target="_blank" rel="noopener">weirdnj.com</a>
+    </footer>
+  </aside>
+  <div id="map"></div>
+</div>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

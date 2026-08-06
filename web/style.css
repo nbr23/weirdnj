@@ -1,0 +1,152 @@
+:root {
+  --bg: #14110f;
+  --panel: #1d1a17;
+  --line: #332e29;
+  --text: #ece6df;
+  --muted: #9b9089;
+  --accent: #d94f2b;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+#app {
+  display: flex;
+  height: 100%;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  flex: none;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+}
+
+#sidebar header {
+  position: sticky;
+  top: 0;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+#sidebar h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+#sidebar header p {
+  margin: 2px 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+#search {
+  width: 100%;
+  padding: 8px 10px;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+#search:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#count {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+#location-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+#sidebar footer {
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+
+#sidebar footer a { color: var(--accent); }
+
+.city h2 {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.location:hover { background: #26221e; }
+
+.location.active {
+  background: #2f2721;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.location .name { font-weight: 600; }
+
+.location .address,
+.location .note,
+.location .distance {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.location .distance { color: var(--accent); }
+
+.nearby h2 { color: var(--accent); }
+
+.location .note { font-style: italic; }
+
+.location.unlocated .name { color: var(--muted); }
+
+#map {
+  flex: 1;
+  height: 100%;
+}
+
+.leaflet-popup-content { line-height: 1.5; }
+.leaflet-popup-content a { color: #b83c1c; }
+.leaflet-popup-content .approx { color: #7a6f68; }
+
+@media (max-width: 700px) {
+  #app { flex-direction: column; }
+  #sidebar { width: 100%; height: 45%; border-right: none; border-bottom: 1px solid var(--line); }
+  #map { height: 55%; }
+}
