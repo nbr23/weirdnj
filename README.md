@@ -7,7 +7,9 @@ and geocoded onto a Leaflet map with a searchable, town-grouped sidebar.
 **415 locations across 227 towns** — 395 pinned to their street address, 20 to
 the town centre.
 
-## Run it
+Live at <https://nbr23.github.io/weirdnj/>.
+
+## Run it locally
 
 ```sh
 docker build -t weirdnj-map .
@@ -20,9 +22,20 @@ openstreetmap.org at runtime.
 
 If you allow location access, the map centres on you and the sidebar gains a
 "Nearest to you" list. Browsers only offer this over HTTPS or on localhost, so
-served from another host over plain HTTP it is silently skipped.
+served from another host over plain HTTP it is silently skipped — on the Pages
+site, which is HTTPS, it always works.
 
 `docker compose up` instead refreshes the data first, then serves it.
+
+## Deploy
+
+`.github/workflows/deploy.yml` publishes `web/` to GitHub Pages on every push to
+`main` that touches it, or on demand from the Actions tab. There is no build
+step — the directory is uploaded as-is — and every asset reference is relative,
+so the site works unchanged under the `/weirdnj/` sub-path.
+
+One-time setup: Settings → Pages → Source: **GitHub Actions**. The repo must be
+public unless the account has Pro or Team.
 
 ## Refresh the data
 
@@ -31,7 +44,8 @@ served from another host over plain HTTP it is silently skipped.
 ./scripts/update.sh --force   # re-geocode everything (~9 min)
 ```
 
-Rewrites `web/locations.json`; review the diff before committing.
+Rewrites `web/locations.json`; review the diff before committing. Pushing that
+commit redeploys the site.
 
 ## Source data
 
